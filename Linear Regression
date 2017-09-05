@@ -1,1 +1,36 @@
-Regression
+# Criando coluna nova e incluindo no data set
+
+attach(Auto) 
+mpg01 <- rep(0, length(mpg)) 
+mpg01[mpg > median(mpg)] <- 1 
+Auto <- data.frame(Auto, mpg01)
+
+# Separando test e train
+
+train <- sample(dim(Default)[1], dim(Default)[1] / 2)
+
+# Dividir tela e plotar os graficos do modelo
+
+par(mfrow = c(2, 2)) 
+plot(modelo)
+
+# Gerar matriz com graficos de correlação
+
+pairs(Auto) 
+cor(Smarket) 
+cor(x1, x2) 
+plot(x1, x2)
+
+# Caso não haja linearidade, tentar transformações nas variaveis e rever os gráficos
+
+plot(log(Auto$horsepower), Auto$mpg) 
+plot(sqrt(Auto$horsepower), Auto$mpg) 
+plot((Auto$horsepower)^2, Auto$mpg)
+
+# Obter intervalo de confiança de 95% do modelo
+
+confint(fit4)
+
+# Usar polinomiais para regressão linear
+
+fit <- lm(resp ~ poly(var, 3))
