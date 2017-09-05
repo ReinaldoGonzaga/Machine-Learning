@@ -1,6 +1,7 @@
 
 # Aplicando LDA
 
+library (MASS)
 fit.lda <- lda(Direction ~ Lag2, data = Weekly, subset = train) 
 fit.lda
 
@@ -11,6 +12,7 @@ mean(pred.lda2$class == Direction.20092010)
 
 # Aplicando QDA
 
+library (MASS)
 fit.qda <- qda(Direction ~ Lag2, data = Weekly, subset = train) 
 fit.qda
 
@@ -21,6 +23,7 @@ mean(pred.qda2$class == Direction.20092010)
 
 # Aplicando KNN
 
+library (class)
 train.X <- as.matrix(Lag2[train]) 
 test.X <- as.matrix(Lag2[!train]) 
 train.Direction <- Direction[train] 
