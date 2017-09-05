@@ -1,1 +1,34 @@
+# K-Fold Cross Validation para Poliomial Regression
 
+library (boot)
+set.seed (17) 
+cv.error.10= rep (0 ,10) for (i in 1:10) {
+glm.fit=glm(mpg∼poly(horsepower ,i),data=Auto)
+cv.error .10[i]=cv.glm (Auto ,glm .fit ,K=10) $delta [1]
+} 
+cv.error.10 
+[1] 24.21 19.19 19.31 19.34 18.88 19.02 18.90 19.71 18.95 19.50
+
+# LOOCV Cross Validation para Poliomial Regression
+
+library (boot)
+cv.error=rep (0,5)
+for (i in 1:5){
++ glm.fit=glm(mpg∼poly(horsepower ,i),data=Auto)
++ cv.error[i]=cv.glm (Auto ,glm .fit)$delta [1]
++ }
+cv.error
+[1] 24.23 19.25 19.33 19.42 19.03
+
+#Bootstrap
+
+#Função que vai ser usada na chamada da boot:
+
+boot.fn <- function(data, index) {
+    fit <- glm(default ~ income + balance, data = data, family = "binomial", subset = index)
+    return (coef(fit))
+}
+
+# Chamada da boot
+library(boot)
+boot(Default, boot.fn, 1000)
